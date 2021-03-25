@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h>
 
 int fInChar(const char *filename)
 {
@@ -18,7 +19,21 @@ int fInChar(const char *filename)
     //Iterate through file
     while ((c = fgetc(fp)) != EOF)
     {
-        printf("%c", c);
+        if (isprint((unsigned char) c))
+        {
+            printf("%c", c);
+        }
+        else
+        {
+            printf("%c", '.');
+        }
+
+        count++;
+
+        if (count % 10 == 0)
+        {
+            printf("\n");
+        }
     }
 
     fclose(fp);
@@ -43,22 +58,30 @@ int fInBytes(const char *filename)
     //Iterate through file
     while ((c = fgetc(fp)) != EOF)
     {
-        printf("%x ", c);
+        printf("%02x ", c);
+        count++;
+
+        if (count % 10 == 0)
+        {
+            printf("\n");
+        }
     }
 
     fclose(fp);
     
     return count;
 }
-int main(void)
+
+
+int main(int argc, char *argv[])
 {
-    printf("File in characters: \n\n"); 
-    fInChar("testfile.txt");
+    printf("File in characters: \n\n");
+    fInChar(argv[1]);
 
-    puts("");
+    printf("\n\n");
 
-    printf("File in bytes: \n\n"); 
-    fInBytes("testfile.txt");
+    printf("File in bytes: \n\n");
+    fInBytes(argv[1]);
 
     return 0;
 }

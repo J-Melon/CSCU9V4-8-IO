@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <ctype.h>
 
-//This does not include whitespace
 int fCountChar(const char *filename)
 {
     FILE *fp = fopen (filename, "r");
