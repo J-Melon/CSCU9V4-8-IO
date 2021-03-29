@@ -41,9 +41,6 @@ void fInChars(FILE *fp)
     printf("\n");
 }
 
-void fOffset(FILE *fp)
-{}
-
 int fCountChar(FILE *fp)
 {
     char c;
@@ -60,8 +57,8 @@ int fCountChar(FILE *fp)
 
 int main(void)
 {
-    FILE *fp1 = fopen("/root/Documents/Uni/CSCU9V4/Practical-8/testfile.txt", "r");
-    FILE *fp2 = fopen("/root/Documents/Uni/CSCU9V4/Practical-8/testfile.txt", "r");
+    FILE *fp1 = fopen("/root/Documents/Uni/CSCU9V4/Practical-8/testfile.txt", "rb");
+    FILE *fp2 = fopen("/root/Documents/Uni/CSCU9V4/Practical-8/testfile.txt", "rb");
     FILE *fp3 = fopen("/root/Documents/Uni/CSCU9V4/Practical-8/testfile.txt", "r");
 
     if (fp1 == NULL)
@@ -72,8 +69,13 @@ int main(void)
 
     int chars = fCountChar(fp3);
 
+    printf("Offset\t\t    Bytes\t\tCharacters\n");
+    printf("------  -----------------------------   ----------\n");
+
     for (int i = 0; i < chars; i += 10)
     {
+        printf("%d\t", i);
+
         fInBytes(fp1);
         fInChars(fp2);
     }
