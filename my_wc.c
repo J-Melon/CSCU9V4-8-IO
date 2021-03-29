@@ -85,11 +85,17 @@ int fCountLines(const char *filename)
     return count;
 }
 
-int main(void)
+int main(int argc, char *argv[])
 {
-    printf("Number of characters in file: %d\n", fCountChar("sam.txt"));
-    printf("Number of words in file: %d\n", fCountWords("sam.txt"));
-    printf("Number of lines in file: %d\n", fCountLines("sam.txt"));
+    if (argc != 2)
+    {
+        printf("Please only use one agrument.");
+        exit(EXIT_FAILURE);
+    }
+
+    printf("Number of characters in file: %d\n", fCountChar(argv[1]));
+    printf("Number of words in file: %d\n", fCountWords(argv[1]));
+    printf("Number of lines in file: %d\n", fCountLines(argv[1]));
     
     return 0;
 }
