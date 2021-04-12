@@ -15,9 +15,12 @@ void fInBytes(FILE *fp)
         { 
             for (int j = 0; j < 10 - i; j++) //For last line line-up (last characters in right place)
             {
-                printf("\t"); 
-                return; 
+                printf("   "); //Spaces byte section 
             }
+
+            printf("  "); //Spaces tab gap between bytes and characters
+            
+            return; 
         }
 
         printf("%02x ", c); //Bytes
