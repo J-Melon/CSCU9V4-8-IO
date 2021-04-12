@@ -66,7 +66,7 @@ int main(int argc, char *argv[])
 
     if (fp1 == NULL)
     {
-        printf("Failed opening %s\n", "testfile.txt");
+        printf("Failed opening %s\n", argv[1]);
         exit(EXIT_FAILURE);
     }
 
