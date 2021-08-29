@@ -13,17 +13,15 @@ void fInBytes(FILE *fp)
 
         if (c == EOF) 
         { 
-            for (int j = 0; j < 10 - i; j++) //For last line line-up (last characters in right place)
-            {
-                printf("   "); //Spaces byte section 
-            }
+            //For last line line-up (last characters in right place)
+            for (int j = 0; j < 10 - i; j++) { printf("   "); }
 
             printf("  "); //Spaces tab gap between bytes and characters
-            
+
             return; 
         }
 
-        printf("%02x ", c); //Bytes
+        printf("%02x ", c &0xff); //Bytes
     }
 
     printf("\t"); //End byte line
@@ -53,10 +51,7 @@ int fCountChar(FILE *fp)
     int count = 0; //Counts characters
 
     //Iterate through file
-    while ((c = fgetc(fp)) != EOF)
-    {
-        count++;
-    }
+    while ((c = fgetc(fp)) != EOF) { count++; }
     
     return count;
 }
@@ -64,8 +59,8 @@ int fCountChar(FILE *fp)
 int main(int argc, char *argv[])
 {
     FILE *fp1 = fopen(argv[1], "rb"); //For bytes
-    FILE *fp2 = fopen(argv[1], "rb"); //For characters
-    FILE *fp3 = fopen(argv[1], "r"); //For character count
+    FILE *fp2 = fopen(argv[1], "r"); //For characters
+    FILE *fp3 = fopen(argv[1], "r"); //For iterating line by line
 
     if (fp1 == NULL)
     {
@@ -78,6 +73,7 @@ int main(int argc, char *argv[])
     printf("Offset\t\t    Bytes\t\tCharacters\n");
     printf("------  -----------------------------   ----------\n");
 
+    // Loops line by line for x lines according to length of file (chars)
     for (int i = 0; i < chars; i += 10)
     {
         printf("%d\t", i); //Offset 
@@ -85,6 +81,10 @@ int main(int argc, char *argv[])
         fInBytes(fp1);
         fInChars(fp2);
     }
+
+    fclose(fp1);
+    fclose(fp2);
+    fclose(fp3);
 
     return 0;
 }
